@@ -9,17 +9,15 @@
 
 int main(int argc, char** argv) {
 	// Create MPI environment
-	MPI_Init(NULL, NULL);
+	MPI_Init(&argc, &argv);
 
 	int world_size;  // world size
 	int world_rank;  // process rank  (what number this one is?)
+	char processor_name[MPI_MAX_PROCESSOR_NAME];
+	int name_len;
 
 	MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-
-	// name of the processor  (hostname?)
-	char processor_name[MPI_MAX_PROCESSOR_NAME];
-	int name_len;
 	MPI_Get_processor_name(processor_name, &name_len);
 
 	// Hello world!
